@@ -1,10 +1,23 @@
 package ru.tandemservice.test.words;
 
 
+/**
+ * Базовая реализация интерфейса {@link IWordService}
+ */
+
 public class WordService implements IWordService {
 
-    public static final IWordService INSTANSE = new WordService();
+    /**
+     * Singleton instance
+     */
+    public static final IWordService INSTANCE = new WordService();
 
+
+    /**
+     * Метод проверки слова/фразы на палиндром
+     * @param input исходный набор символов
+     * @return boolean корректности слова
+     */
     @Override
     public boolean checkWord(String[] input) {
         for(int i=0;i<input.length/2;i++){

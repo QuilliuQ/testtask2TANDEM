@@ -4,6 +4,10 @@ import ru.tandemservice.test.model.Player;
 
 import java.util.*;
 
+
+/**
+ * Интерфейс таблицы лидеров
+ */
 public interface IScoreboardService {
 
     void addScores(Player player);
