@@ -3,8 +3,8 @@ package ru.tandemservice.test.game;
 import ru.tandemservice.test.scoreboard.IScoreboardService;
 import ru.tandemservice.test.model.Player;
 import ru.tandemservice.test.scoreboard.ScoreboardService;
-import ru.tandemservice.test.words.IWordService;
-import ru.tandemservice.test.words.WordService;
+import ru.tandemservice.test.word.IWordService;
+import ru.tandemservice.test.word.WordService;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +14,7 @@ import java.util.List;
  * Singleton не реализован для создания нового экземпляра каждому игроку
  */
 
-class GameService implements IGameService {
+public class GameService implements IGameService {
 
     /**
      * Получаем для Singleton instance {@link IScoreboardService} и {@link IWordService}

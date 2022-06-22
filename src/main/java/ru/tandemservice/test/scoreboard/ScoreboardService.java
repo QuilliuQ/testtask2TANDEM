@@ -1,7 +1,7 @@
 package ru.tandemservice.test.scoreboard;
 
 import ru.tandemservice.test.model.Player;
-import ru.tandemservice.test.words.IWordService;
+import ru.tandemservice.test.word.IWordService;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -44,5 +44,12 @@ public class ScoreboardService implements IScoreboardService{
     @Override
     public List<Player> getScoreboardTable() {
         return scoreboardList;
+    }
+
+    /**
+     * Метод очистки списка для тестов
+     */
+    public void clear(){
+        scoreboardList.clear();
     }
 }

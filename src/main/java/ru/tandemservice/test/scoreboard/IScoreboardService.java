@@ -13,4 +13,6 @@ public interface IScoreboardService {
     void addScores(Player player);
 
     List<Player> getScoreboardTable();
+
+    void clear();
 }

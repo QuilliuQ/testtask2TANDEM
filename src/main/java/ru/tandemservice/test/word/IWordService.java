@@ -1,4 +1,4 @@
-package ru.tandemservice.test.words;
+package ru.tandemservice.test.word;
 
 
 /**
