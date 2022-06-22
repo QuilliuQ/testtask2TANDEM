@@ -14,5 +14,5 @@ public interface IScoreboardService {
 
     List<Player> getScoreboardTable();
 
-    void clear();
+    void clearList();
 }

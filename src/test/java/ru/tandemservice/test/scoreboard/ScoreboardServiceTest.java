@@ -17,17 +17,16 @@ class ScoreboardServiceTest {
 
     @AfterEach
     void clearList(){
-        scoreboardService.clear();
+        scoreboardService.clearList();
     }
 
     @Test
     void checkThatScoresAdded() {
-        List<Player> testScoreBoardList = new ArrayList<>();
+
         Player testPlayer = new Player("Test",11);
-        testScoreBoardList.add(testPlayer);
         scoreboardService.addScores(testPlayer);
 
-        assertEquals(testScoreBoardList,scoreboardService.getScoreboardTable());
+        assertTrue(scoreboardService.getScoreboardTable().contains(testPlayer));
 
     }
 
@@ -46,6 +45,18 @@ class ScoreboardServiceTest {
         assertEquals(testScoreBoardList.subList(0,5), scoreboardService.getScoreboardTable());
     }
 
+    @Test
+    void checkThatScoresUpdate(){
+
+        Player testPlayer = new Player("Test",11);
+        scoreboardService.addScores(testPlayer);
+        testPlayer.setScore(20);
+        scoreboardService.addScores(testPlayer);
+        List<Player> resultList = scoreboardService.getScoreboardTable();
+        assertEquals(1, resultList.size());
+        assertTrue(testPlayer.containsWithScore(resultList.get(0)));
+    }
+
     private List<Player> generatePlayers(){
         List<Player> testScoreBoardList = new ArrayList<>();
         Random random = new Random();
@@ -58,3 +69,4 @@ class ScoreboardServiceTest {
         return testScoreBoardList;
     }
 }
+

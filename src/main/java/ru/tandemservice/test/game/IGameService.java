@@ -16,6 +16,5 @@ public interface IGameService {
 
     List<Player> getScoreboardTable();
 
-    void stopGame(String name);
-
+    Player getPlayer();
 }

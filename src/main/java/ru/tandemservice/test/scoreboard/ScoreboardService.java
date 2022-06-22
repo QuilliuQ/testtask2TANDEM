@@ -5,6 +5,7 @@ import ru.tandemservice.test.word.IWordService;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -31,25 +32,33 @@ public class ScoreboardService implements IScoreboardService{
      */
     @Override
     public void addScores(Player player) {
-        scoreboardList.add(player);
-        scoreboardList.sort(Comparator.reverseOrder());
-        if(scoreboardList.size()>5){
-            scoreboardList.remove(scoreboardList.remove(scoreboardList.size()-1));
+        int index = scoreboardList.indexOf(player);
+        if(index != -1){
+            scoreboardList.set(index,player);
         }
-    }
+        else {
+            scoreboardList.add(player);
+        }
+            scoreboardList.sort(Comparator.reverseOrder());
+            if (scoreboardList.size() > 5) {
+                scoreboardList.remove(scoreboardList.remove(scoreboardList.size() - 1));
+            }
+        }
+
 
     /**
      * Метод получения таблицы лидеров
      */
     @Override
     public List<Player> getScoreboardTable() {
-        return scoreboardList;
+        if(!scoreboardList.isEmpty()) return scoreboardList;
+        return null;
     }
 
     /**
      * Метод очистки списка для тестов
      */
-    public void clear(){
+    public void clearList(){
         scoreboardList.clear();
     }
 }

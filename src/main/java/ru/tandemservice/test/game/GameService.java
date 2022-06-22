@@ -16,6 +16,10 @@ import java.util.List;
 
 public class GameService implements IGameService {
 
+    public GameService(String name) {
+        player = new Player(name);
+    }
+
     /**
      * Получаем для Singleton instance {@link IScoreboardService} и {@link IWordService}
      */
@@ -30,10 +34,15 @@ public class GameService implements IGameService {
     private final List<String> blackList = new ArrayList<>();
 
     /**
-     * Переменная содержащяя количество очков игрока
+     * Переменная содержащяя данные игрока
      */
 
-    private int score;
+    private final Player player;
+
+
+    public Player getPlayer() {
+        return player;
+    }
 
     /**
      * Основной метод проверки слова/фразы на палиндром
@@ -45,9 +54,12 @@ public class GameService implements IGameService {
             String[] array = input.replace(" ", "").split("");
             if (wordService.checkWord(array)) {
                 blackList.add(input);
-                score += array.length;
+                player.setScore(array.length);
+                scoreboardService.addScores(player);
             }
+            return;
         }
+        throw new IllegalArgumentException("Word in blacklist");
     }
 
     /**
@@ -59,12 +71,4 @@ public class GameService implements IGameService {
         return scoreboardService.getScoreboardTable();
     }
 
-    /**
-     * Метод окончания игры
-     * @param name Имя пользователя, таблица лидеров из цифр будет не информативной
-     */
-    @Override
-    public void stopGame(String name) {
-        scoreboardService.addScores(new Player(name,score));
-    }
 }
